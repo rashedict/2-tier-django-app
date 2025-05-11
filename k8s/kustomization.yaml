@@ -1,0 +1,17 @@
+resources:
+  - ns.yaml
+  - db-credentials.yaml
+  - postgres-pvc.yaml
+  - postgresql-db.yaml
+  - web-deployment
+  - cm.yaml
+  - ingress.yaml
+  - web-hpa.yaml
+
+# Optional: If you want to customize the namespace for resources
+namespace: loginsignup
+
+# Optional: Configure secrets or configMap transformation (if needed)
+# You can patch or overlay configurations if required
+patchesStrategicMerge:
+  - web-deployment.yaml  # Modify if necessary

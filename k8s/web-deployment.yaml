@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loginsignup-web
+  namespace: loginsignup
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: loginsignup-web
+  template:
+    metadata:
+      labels:
+        app: loginsignup-web
+    spec:
+      containers:
+        - name: web
+          image: loginsignup_web:latest  # Replace with your image
+          env:
+            - name: DATABASE_URL
+              value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@loginsignup-db:5432/$(POSTGRES_DB)"
+            - name: DEBUG
+              value: "false"
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loginsignup-web
+  namespace: loginsignup
+spec:
+  selector:
+    app: loginsignup-web
+  ports:
+    - port: 8000
+      targetPort: 8000

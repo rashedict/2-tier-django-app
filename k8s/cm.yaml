@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loginsignup-config
+  namespace: loginsignup
+data:
+  DJANGO_SECRET_KEY: "ur%=bxd3)+8d$2*_5-bwo-!x-=72_f+&5tv-3alk^0%7v2&cg7"
+  DJANGO_ALLOWED_HOSTS: "*"
